@@ -1,25 +1,25 @@
- int knapSack(int w, int wt[], int val[], int n) 
+ int knapSack(int W, int wt[], int val[], int n) 
     { 
        // Your code here
-       int dp[n+1][w+1];
-       for(int i=0;i<=n;i++)
+       vector<vector<int>> dp(n+1,vector<int>(W+1,0));
+       for(int i=wt[0];i<=W;i++)
        {
-           for(int j=0;j<=w;j++)
+           dp[0][i]=val[0];
+       }
+       
+       for(int i=1;i<n;i++)
+       {
+           for(int j=0;j<=W;j++)
            {
-               if(i==0 && j==0)
-               dp[i][j]=0;
+                int nottake = 0 +dp[i-1][j];
+         
+                 int take=-1e9;
+                 if(wt[i]<=j)
+                 take=val[i]+dp[i-1][j-wt[i]];
+                 
+                 dp[i][j]=max(take,nottake);
            }
        }
-       for(int i=1;i<=n;i++)
-       {
-           for(int j=1;j<=w;j++)
-           {
-               if(wt[i-1]>j)
-               dp[i][j]=dp[i-1][j];
-               else
-               dp[i][j]=max(dp[i-1][j],val[i-1]+dp[i-1][j-wt[i-1]]);
-           }
-       }
-       return dp[n][w];
+       
+       return dp[n-1][W];
     }
-    
