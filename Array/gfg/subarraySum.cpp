@@ -1,31 +1,28 @@
- vector<int> subarraySum(int arr[], int n, long long s)
+vector<int> subarraySum(int arr[], int n, int s)
     {
-        // Your code here
-           if(n == 1 and arr[0] == s)
-            return {1 , 1};
-        else if(n == 1 and arr[0] != s)
-            return {-1};
-            
-        int end , start = 0 , sum = arr[0];
-        
-        for(int end = 1; end <= n; end++) //<= because we also need to handle the last element
+        if(n == 1 && arr[0] == s)
+        return {1 , 1};
+	
+        else if(n == 1 && arr[0] != s)
+        return {-1};
+ 
+	      int sum = arr[0] , start = 0 , end;
+         
+        for ( end = 1; end <= n; end++)
         {
-            
-            while(sum > s and start < end - 1)
+            while(sum > s && start < end - 1)
             {
-                sum -= arr[start];
-                start++;
+            	sum -= arr[start];
+            	start++;
             }
-            
-            if( sum == s )
-            {
-                return {start + 1 , end};
+
+            if (sum == s)
+            {                
+                return {start + 1,end};
             }
-            
+
             if(end < n)
             sum += arr[end];
         }
-        
         return {-1};
-
     }
