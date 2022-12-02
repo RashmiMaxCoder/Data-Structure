@@ -3,7 +3,7 @@ vector<int> find(int arr[], int n , int x )
     // code here
     int l,count=0;
     vector<int> first;
-    for(int i=0;i<n;i++){
+    for(int i=0;i<n;i++){   //get right element
         if(arr[i]==x){
             
             l=i;
@@ -17,7 +17,7 @@ vector<int> find(int arr[], int n , int x )
     return first;    
     }
     else{
-    int f=l-count+1;
+    int f=l-count+1;  
     first.push_back(f);
     first.push_back(l);
     return first;
