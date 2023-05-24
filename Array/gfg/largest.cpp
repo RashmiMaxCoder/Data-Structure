@@ -22,3 +22,9 @@ int largest(vector<int> &arr, int n)
        }
        return max;
     }
+Method 3 :-
+     int largest(vector<int> &arr, int n)
+    {
+    int res = *(max_element(arr.begin(), arr.end())); 
+      return res;
+    }
